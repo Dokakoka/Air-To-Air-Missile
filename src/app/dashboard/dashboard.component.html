@@ -1,0 +1,68 @@
+<style>
+  th {
+    font-size:20px
+  }
+</style>
+
+<div class="container py-5">
+  <ejs-chart *ngIf="data[0].proximity == true" [primaryXAxis]="xAxis" [primaryYAxis]="yAxis" [title]="chartTitle" [legendSettings]="legend" [tooltip]="tooltipSettings">
+    <e-series-collection>
+      <e-series type="Line" [dataSource]='chart' xName="x" yName="y" name="Missile" [marker]="markerSettings"></e-series>
+      <e-series type="Line" [dataSource]='planeLine' xName="x" yName="y" name="Target Plane" [marker]="markerSettings"></e-series>
+    </e-series-collection>
+  </ejs-chart>
+
+  <br>
+  <h2 class="text-center">Missile Informations</h2>
+  <br>
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>Burner</th>
+          <th>Armed</th>
+          <th>Ammo</th>
+          <th>Ammo Available</th>
+          <th>Proximity Triger</th>
+          <th>Warhead</th>
+          <th>X</th>
+          <th>Y</th>
+        </tr>
+      </thead>
+
+      <tbody style="font-size: 20px">
+        <tr>
+          <td>{{ data[0].burner }}</td>
+          <td>{{ data[0].armed }}</td>
+          <td>{{ data[0].ammo }}</td>
+          <td>{{ data[0].ammoAvailable }}</td>
+          <td>{{ data[0].proximity }}</td>
+          <td>{{ data[0].warhead }}</td>
+          <td>{{ data[0].x }}</td>
+          <td>{{ data[0].y }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h1 class="text-center">Target Plane</h1>
+  <br>
+
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>X</th>
+          <th>Y</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>{{ data[1].x }}</td>
+          <td>{{ data[1].y }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

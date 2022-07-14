@@ -1,0 +1,87 @@
+<style>
+  .plane {
+    transition:all 3s;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="first-plane">
+          <div #plane style="position: relative; width:25%">
+            <svg class="plane" style="width:200px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M482.3 192C516.5 192 576 221 576 256C576 292 516.5 320 482.3 320H365.7L265.2 495.9C259.5 505.8 248.9 512 237.4 512H181.2C170.6 512 162.9 501.8 165.8 491.6L214.9 320H112L68.8 377.6C65.78 381.6 61.04 384 56 384H14.03C6.284 384 0 377.7 0 369.1C0 368.7 .1818 367.4 .5398 366.1L32 256L.5398 145.9C.1818 144.6 0 143.3 0 142C0 134.3 6.284 128 14.03 128H56C61.04 128 65.78 130.4 68.8 134.4L112 192H214.9L165.8 20.4C162.9 10.17 170.6 0 181.2 0H237.4C248.9 0 259.5 6.153 265.2 16.12L365.7 192H482.3z"/></svg>
+            <div style="position: absolute; width: 100%; height: 100%;">
+              <svg class="missile" #m xmlns="http://www.w3.org/2000/svg" style="width:100px; opacity:0;" viewBox="0 0 512 512"><path d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z"/></svg>
+            </div>
+          </div>
+        </div>
+
+      <div class="second-plane" dir="rtl" style="display: flex; justify-content: center;">
+        <div #plane2 style="position: relative; width:25%">
+          <svg #plane2svg  class="plane" style="width:200px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M482.3 192C516.5 192 576 221 576 256C576 292 516.5 320 482.3 320H365.7L265.2 495.9C259.5 505.8 248.9 512 237.4 512H181.2C170.6 512 162.9 501.8 165.8 491.6L214.9 320H112L68.8 377.6C65.78 381.6 61.04 384 56 384H14.03C6.284 384 0 377.7 0 369.1C0 368.7 .1818 367.4 .5398 366.1L32 256L.5398 145.9C.1818 144.6 0 143.3 0 142C0 134.3 6.284 128 14.03 128H56C61.04 128 65.78 130.4 68.8 134.4L112 192H214.9L165.8 20.4C162.9 10.17 170.6 0 181.2 0H237.4C248.9 0 259.5 6.153 265.2 16.12L365.7 192H482.3z"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="d-flex justify-content-evenly py-5 ">
+    <button class="btn btn-primary" (click)="boostTargetPlane(plane2);">Start Simulation</button>
+
+    <button class="btn btn-primary" (click)="aircraft.fire(plane2svg, m)">Fire Missile</button>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #settingsForm="ngForm" class="row g-3">
+          <div class="text-center"><h4>First Plane Settings</h4></div>
+          <div class="col-md-6">
+            <label for="first-x" class="form-label">X</label>
+            <input type="number" ngModel class="form-control" name="firstX">
+          </div>
+          <div class="col-md-6">
+            <label for="first-y" class="form-label">Y</label>
+            <input type="number" ngModel class="form-control" name="firstY">
+          </div>
+          <div class="col-md-12">
+            <label for="ammo" class="form-label">Ammo</label>
+            <input type="number" ngModel class="form-control" name="ammo">
+          </div>
+
+          <div class="text-center"><h4>Second Plane Settings</h4></div>
+          <div class="col-md-6">
+            <label for="second-x" class="form-label">X</label>
+            <input type="number" ngModel class="form-control" name="secondX">
+          </div>
+          <div class="col-md-6">
+            <label for="second-y" class="form-label">Y</label>
+            <input type="number" ngModel class="form-control" name="secondY">
+          </div>
+
+          <div class="col-12 d-flex justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="setValues(settingsForm.value, plane, plane2)">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="alert alert-danger" *ngIf="aircraft.checkAmmo() == false" role="alert">
+    No Ammo Available
+  </div>
+
+  <div class="alert alert-success" *ngIf="aircraft.checkAmmo()" role="alert">
+    Ok
+  </div>
+
+</div>
